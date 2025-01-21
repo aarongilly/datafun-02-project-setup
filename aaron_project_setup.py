@@ -15,6 +15,7 @@ Drived from Work By: Denise Case
 
 # Import moduldes from standand library
 import pathlib
+from time import sleep
 
 # Import local modules
 import utils_aaron
@@ -104,8 +105,12 @@ def create_prefixed_folders(folder_list: list, prefix: str) -> None:
     
     Arguments:
     folder_list -- A list of strings containing names of folders to be created
-    prefix -- 
+    prefix -- the desired prefix 
     '''
+
+    # Log the function call and its arguments using an f-string
+    print(f"FUNCTION CALLED: create_prefixed_folders folder_list={folder_list}, prefix={prefix}")
+
     # Creating a new list concatenating the passed-in list with the passed-in prefix.
     modified_list = [prefix + name for name in folder_list]
     # Passings this to the function I already wrote
@@ -118,14 +123,22 @@ def create_prefixed_folders(folder_list: list, prefix: str) -> None:
 
 def create_folders_periodically(duration_seconds: int) -> None:
     '''
-    THIS IS WHERE YOU SHOULD PICK UP NEXT TIME TO FINISH THE ASSIGNMENT
+    Creates folders at a pace according to the supplied duration in seconds.
 
-    Asked Dr. Case for a clarification on what condition should cause the while loop to terminate. 
+    Arguments:
+    duration_seconds -- Number of seconds to wait between folder creation
     '''
     
-    # TODO: Implement this function professionally and remove the temporary pass
-    pass
+    # Log the function call and its arguments using an f-string
+    print(f"FUNCTION CALLED: create_folders_periodically duration_seconds={duration_seconds}")
 
+    number_of_folders_to_create = 3
+
+    i = 1
+    while i <= number_of_folders_to_create:
+        data_path.joinpath(f"Periodic Folder {str(i)}").mkdir(exist_ok=True) # assuming I'm supposed to make the folders inside the `data` directory as part of this assignment
+        i += 1
+        sleep(duration_seconds)
 
   
 #####################################
@@ -159,7 +172,7 @@ def main() -> None:
     create_prefixed_folders(folder_names, prefix)
 
     # Call function 4 to create folders periodically using while
-    duration_secs:int = 5  # duration in seconds
+    duration_secs:int = 2  # duration in seconds
     create_folders_periodically(duration_secs)
 
     # Call your function and test these options
